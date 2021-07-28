@@ -1,17 +1,20 @@
 import 'reflect-metadata';
 import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
-
-import AppError from '@shared/errors/AppError';
-import '@shared/typeorm';
-
+import swaggerUi from 'swagger-ui-express';
 import 'express-async-errors';
+
+import swaggerFile from '@docs/swagger';
+import AppError from '@shared/errors/AppError';
+
 import routes from './routes';
+import '@shared/typeorm';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(routes);
 
 app.use(
