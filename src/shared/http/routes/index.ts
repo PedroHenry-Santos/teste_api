@@ -1,11 +1,9 @@
 import { Router } from 'express';
 
+import buildersRouter from '@modules/Builder/routes/builders.routes';
+
 const routes = Router();
 
-routes.get('/', (request, response) => {
-  return response.json({
-    message: 'Hello word!'
-  });
-});
+routes.use('/builders', buildersRouter);
 
 export default routes;
