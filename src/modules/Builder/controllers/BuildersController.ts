@@ -42,7 +42,7 @@ export default class BuildersController {
 
     const createBuilder = new CreateBuilderService();
 
-    const builder = await createBuilder.execute({
+    const { id } = await createBuilder.execute({
       name,
       website,
       street,
@@ -56,7 +56,12 @@ export default class BuildersController {
       logo
     });
 
-    return response.json(builder);
+    return response.status(201).json({
+      id,
+      logo,
+      city_id,
+      state_id
+    });
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
