@@ -29,7 +29,7 @@ export class AddBuilderState1627729190675 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('builders', 'SateBuilder');
+    await queryRunner.dropForeignKey('builders', 'StateBuilder');
     await queryRunner.dropColumn('builders', 'state_id');
   }
 }

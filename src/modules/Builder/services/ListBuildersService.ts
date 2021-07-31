@@ -6,8 +6,9 @@ import { BuildersRepository } from '../typeorm/repositories/BuildersRepository';
 class ListBuilderService {
   public async execute(): Promise<Builder[]> {
     const buildersRepository = getCustomRepository(BuildersRepository);
+
     const users = await buildersRepository.find({
-      relations: ['states', 'cities', 'neighborhood']
+      relations: ['states', 'cities', 'neighborhoods']
     });
 
     return users;

@@ -43,7 +43,7 @@ class Builder {
   neighborhood_id: Neighborhood;
 
   @OneToOne(() => City)
-  @JoinColumn({ name: 'city_id' })
+  @JoinColumn()
   city_id: City;
 
   @OneToOne(() => State)

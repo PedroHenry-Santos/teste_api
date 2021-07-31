@@ -2,8 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
@@ -24,8 +23,7 @@ class City {
   @Column()
   longitude: number;
 
-  @OneToOne(() => State)
-  @JoinColumn({ name: 'state_id' })
+  @ManyToOne(() => State)
   state_id: State;
 
   @CreateDateColumn()
