@@ -6,7 +6,7 @@ import Builder from '../typeorm/entities/Builder';
 import { BuildersRepository } from '../typeorm/repositories/BuildersRepository';
 
 interface IRequest {
-  id: string;
+  builder_id: string;
   name: string;
   website: string;
   street: string;
@@ -14,15 +14,12 @@ interface IRequest {
   cep: string;
   latitude: number;
   longitude: number;
-  neighborhood_id: string;
-  city_id: string;
-  state_id: string;
   logo: string;
 }
 
 class UpdateBuilderService {
   public async execute({
-    id,
+    builder_id,
     name,
     website,
     street,
@@ -30,14 +27,11 @@ class UpdateBuilderService {
     cep,
     latitude,
     longitude,
-    neighborhood_id,
-    city_id,
-    state_id,
     logo
   }: IRequest): Promise<Builder> {
     const builderRepository = getCustomRepository(BuildersRepository);
 
-    const builder = await builderRepository.findOne(id);
+    const builder = await builderRepository.findOne(builder_id);
 
     if (!builder) {
       throw new AppError('Builder not fund.', 404);
@@ -56,9 +50,6 @@ class UpdateBuilderService {
     builder.cep = cep;
     builder.latitude = latitude;
     builder.longitude = longitude;
-    builder.neighborhood_id = neighborhood_id;
-    builder.city_id = city_id;
-    builder.state_id = state_id;
     builder.logo = logo;
 
     await builderRepository.save(builder);

@@ -8,17 +8,19 @@ export class BuildersRepository extends Repository<Builder> {
     const builder = await this.findOne({
       where: {
         name
-      }
+      },
+      relations: ['states', 'cities', 'neighborhood']
     });
 
     return builder;
   }
 
-  public async findById(id: string): Promise<Builder | undefined> {
+  public async findById(builder_id: string): Promise<Builder | undefined> {
     const builder = await this.findOne({
       where: {
-        id
-      }
+        builder_id
+      },
+      relations: ['states', 'cities', 'neighborhood']
     });
 
     return builder;

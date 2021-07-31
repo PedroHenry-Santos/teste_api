@@ -1,15 +1,13 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateConstructionCompany1627562730517
-  implements MigrationInterface
-{
+export class CreateCity1627679352037 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'builders',
+        name: 'cities',
         columns: [
           {
-            name: 'id',
+            name: 'city_id',
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
@@ -19,22 +17,6 @@ export class CreateConstructionCompany1627562730517
             name: 'name',
             type: 'varchar',
             isUnique: true
-          },
-          {
-            name: 'website',
-            type: 'varchar'
-          },
-          {
-            name: 'street',
-            type: 'varchar'
-          },
-          {
-            name: 'number',
-            type: 'varchar'
-          },
-          {
-            name: 'cep',
-            type: 'varchar'
           },
           {
             name: 'latitude',
@@ -47,10 +29,6 @@ export class CreateConstructionCompany1627562730517
             type: 'decimal',
             precision: 12,
             scale: 8
-          },
-          {
-            name: 'logo',
-            type: 'varchar'
           },
           {
             name: 'created_at',
@@ -68,6 +46,6 @@ export class CreateConstructionCompany1627562730517
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('builders');
+    await queryRunner.dropTable('cities');
   }
 }

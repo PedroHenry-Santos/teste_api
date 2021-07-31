@@ -2,14 +2,20 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
 
+import City from '../../../City/typeorm/entities/City';
+import Neighborhood from '../../../Neighborhood/typeorm/entities/Neighborhood';
+import State from '../../../State/typeorm/entities/State';
+
 @Entity('builders')
 class Builder {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  builder_id: string;
 
   @Column()
   name: string;
@@ -32,14 +38,17 @@ class Builder {
   @Column()
   longitude: number;
 
-  @Column()
-  neighborhood_id: string;
+  @OneToOne(() => Neighborhood)
+  @JoinColumn({ name: 'neighborhood_id' })
+  neighborhood_id: Neighborhood;
 
-  @Column()
-  city_id: string;
+  @OneToOne(() => City)
+  @JoinColumn({ name: 'city_id' })
+  city_id: City;
 
-  @Column()
-  state_id: string;
+  @OneToOne(() => State)
+  @JoinColumn({ name: 'state_id' })
+  state_id: State;
 
   @Column()
   logo: string;

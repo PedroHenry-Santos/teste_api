@@ -5,6 +5,27 @@ import AppError from '@shared/errors/AppError';
 import Builder from '../typeorm/entities/Builder';
 import { BuildersRepository } from '../typeorm/repositories/BuildersRepository';
 
+interface State {
+  name: string;
+  latitude: number;
+  longitude: number;
+  uf: string;
+}
+
+interface City {
+  name: string;
+  latitude: number;
+  longitude: number;
+  state_id: State;
+}
+
+interface Neighborhood {
+  name: string;
+  latitude: number;
+  longitude: number;
+  city_id: City;
+}
+
 interface IRequest {
   name: string;
   website: string;
@@ -13,9 +34,9 @@ interface IRequest {
   cep: string;
   latitude: number;
   longitude: number;
-  neighborhood_id: string;
-  city_id: string;
-  state_id: string;
+  neighborhood_id: Neighborhood;
+  city_id: City;
+  state_id: State;
   logo: string;
 }
 
